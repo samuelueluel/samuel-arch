@@ -255,6 +255,7 @@ declare -a packages=(
 declare -a _STASH=(
     /usr/share/xdg-desktop-portal/niri-portals.conf
     /usr/lib/sysusers.d/greetd.conf
+    /etc/xdg/fuzzel/fuzzel.ini
 )
 mkdir -p /tmp/sys-stash
 for _f in "${_STASH[@]}"; do

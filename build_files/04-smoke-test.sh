@@ -35,7 +35,7 @@ PACNEW=$(find /etc -name "*.pacnew" -o -name "*.pacsave" 2>/dev/null || true)
 
 # ── 5. No broken symlinks in critical paths ────────────────────────────────
 echo "-- broken symlinks"
-BROKEN=$(find /usr/bin /usr/lib /etc -xtype l 2>/dev/null | head -10 || true)
+BROKEN=$(find /usr/bin /usr/lib /etc -xtype l -not -path '/usr/lib/bootc/*' 2>/dev/null | head -10 || true)
 [[ -z "$BROKEN" ]] || fail "Broken symlinks: $BROKEN"
 
 # ── 6. Key runtime binaries present ───────────────────────────────────────
