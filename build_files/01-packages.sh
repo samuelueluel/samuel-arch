@@ -270,7 +270,7 @@ done
 unset _STASH _f _s
 
 # install build tools as deps so they're swept as orphans after compilation
-pacman -S --noconfirm --asdeps gcc binutils
+pacman -S --noconfirm --asdeps gcc binutils fakeroot debugedit
 
 # yay requires a non-root user
 useradd -m builduser
