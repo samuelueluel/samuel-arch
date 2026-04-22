@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec just --justfile /usr/share/samuel-arch/justfile --working-directory "$HOME" "$@"
