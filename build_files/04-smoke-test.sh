@@ -25,7 +25,7 @@ done
 
 # ── 3. Pacman file integrity ───────────────────────────────────────────────
 echo "-- pacman file integrity"
-MISSING_FILES=$(pacman -Qk 2>&1 | grep -v ': 0 missing' | grep 'missing' || true)
+MISSING_FILES=$(pacman -Qk 2>&1 | grep 'missing files' | grep -v ', 0 missing files' || true)
 [[ -z "$MISSING_FILES" ]] || fail "Packages with missing files: $MISSING_FILES"
 
 # ── 4. No config file conflicts left unresolved ───────────────────────────
