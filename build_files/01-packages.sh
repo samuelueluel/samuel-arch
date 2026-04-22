@@ -169,7 +169,6 @@ declare -a packages=(
 
     # ========> interface / theming
     accountsservice
-    adw-gtk3
     chaotic-aur/bibata-cursor-theme
     chaotic-aur/darkly-qt6-git
     matugen
@@ -207,7 +206,6 @@ declare -a packages=(
     gst-plugins-base
     gst-plugins-good
     gst-plugins-ugly
-    gstreamer-vaapi
     libdvdcss
     libglvnd
     librsvg
@@ -261,7 +259,7 @@ pacman -S --noconfirm --asdeps gcc binutils
 # yay requires a non-root user
 useradd -m builduser
 echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-su - builduser -c "yay -S --noconfirm bluetuith uupd dropbox xdg-desktop-portal-termfilechooser"
+su - builduser -c "yay -S --noconfirm bluetuith uupd dropbox xdg-desktop-portal-termfilechooser adw-gtk3"
 userdel -r builduser
 sed -i '/builduser/d' /etc/sudoers
 
