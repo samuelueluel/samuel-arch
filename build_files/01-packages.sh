@@ -180,7 +180,6 @@ declare -a packages=(
     orchis-theme
     gnome-keyring
     libappindicator
-    quickshell
     evolution-data-server
     glycin
     nwg-look
@@ -251,7 +250,24 @@ declare -a packages=(
     yay
 )
 
+# system_files pre-populates some paths that packages also own; stash them so
+# pacman doesn't hit a "file exists in filesystem" conflict, then restore after.
+declare -a _STASH=(
+    /usr/share/xdg-desktop-portal/niri-portals.conf
+    /usr/lib/sysusers.d/greetd.conf
+)
+mkdir -p /tmp/sys-stash
+for _f in "${_STASH[@]}"; do
+    [[ -f "$_f" ]] && mv "$_f" /tmp/sys-stash/
+done
+
 pacman -Sy --noconfirm "${packages[@]}" >/dev/null
+
+for _f in "${_STASH[@]}"; do
+    _s="/tmp/sys-stash/$(basename "$_f")"
+    [[ -f "$_s" ]] && cp "$_s" "$_f"
+done
+unset _STASH _f _s
 
 # install build tools as deps so they're swept as orphans after compilation
 pacman -S --noconfirm --asdeps gcc binutils
