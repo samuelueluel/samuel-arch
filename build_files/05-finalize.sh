@@ -15,7 +15,7 @@ DRACUT_NO_XATTR=1 dracut --force --no-hostonly --reproducible --zstd --verbose -
 rm -rf /tmp/* /run/*
 
 # remove target directories
-rm -rf /{boot,home,root,srv,mnt,var,usr/local}
+rm -rf /{boot,home,opt,root,srv,mnt,var,usr/local}
 rm -rf /usr/lib/sysimage/{log,cache/pacman/pkg}
 rm -rf /build
 
